@@ -77,8 +77,15 @@ a {
 }
 a:hover, a:focus-visible { text-decoration-color: currentColor; }
 
-/* Nav links carry no underline at all. */
+/* Nav links carry no underline, except a fine one under the current page
+   (each page marks its own link with aria-current="page"). */
 .nav-links a { text-decoration: none; }
+.nav-links a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(65, 81, 64, .55);
+  text-underline-offset: .3em;
+}
 
 /* ------------------------------------------------------------------
    Header: nav links over the phase-mixing drawing
@@ -89,7 +96,7 @@ header { text-align: center; }
 
 .nav-links {
   position: absolute;
-  top: 6.9rem;
+  top: 6.35rem;   /* vertical centre of the drawing at full width */
   left: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
@@ -157,7 +164,10 @@ img.spec {
 ol, ul { margin: var(--space-m) 0 0; padding-left: 1.5em; }
 ul { list-style: circle; }
 li + li { margin-top: var(--space-s); }
-.papers li + li { margin-top: var(--space-m); }
+.papers li + li { margin-top: 1.5em; }
+/* Martel's bold cut looks smaller than the regular at the same size,
+   so the titles get a small step up to read as body size. */
+.papers strong { font-size: 1.08em; }
 .papers .venue { font-style: italic; }
 .papers .links { font-style: normal; }
 /* Inline maths: fonts that carry ℏ, ∈ and → properly. */
