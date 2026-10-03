@@ -148,7 +148,6 @@ img.spec {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 3pt;
 }
 .contact-deets {
   display: inline-block;
@@ -165,11 +164,12 @@ ol, ul { margin: var(--space-m) 0 0; padding-left: 1.5em; }
 ul { list-style: circle; }
 li + li { margin-top: var(--space-s); }
 .papers li + li { margin-top: 1.5em; }
-/* Martel's bold cut looks smaller than the regular at the same size,
-   so the titles get a small step up to read as body size. */
-.papers strong { font-size: 1.08em; }
+/* Titles stay at the body size (Martel's bold cut only looks smaller);
+   the venue line and the summary step down to the site's secondary size. */
 .papers .venue { font-style: italic; }
 .papers .links { font-style: normal; }
+.papers .venue, .papers .links, .papers .summary { font-size: .9em; }
+.papers .summary { display: inline-block; }
 /* Inline maths: fonts that carry ℏ, ∈ and → properly. */
 .math { font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'DejaVu Serif', serif; }
 
@@ -253,5 +253,5 @@ footer {
   }
 
   .bio { flex: 1 1 100%; max-width: 100%; padding-right: 0; }
-  .photo { flex: 1 1 100%; max-width: 60%; margin: var(--space-m) auto 0; }
+  .photo { flex: 1 1 100%; max-width: 60%; margin: var(--space-m) 0 0; }   /* left, not centred */
 }
