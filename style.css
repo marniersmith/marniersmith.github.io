@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+/* ------------------------------------------------------------------
+   Palette and spacing
+   ------------------------------------------------------------------ */
+/* Palette from Farrow & Ball paints (screen values from e-paint.co.uk):
+   Wimborne White (No. 239) for the background, Studio Green (No. 93) for
+   the text, Duck Green (No. W55) for headings and nav, Green Smoke
+   (No. 47) for the drawing. Nearby alternatives: creams Pointing #f3f0e4
+   and Lime White #e8e0cb; greens Calke Green #77866a (lighter, sage),
+   Bancha #676746 (olive, between the two), Green Smoke #717b70. */
+:root {
+  --paper:   #f5f2e8;   /* background: Wimborne White */
+  --ink:     #474d4a;   /* text: Studio Green */
+  --heading: #415140;   /* headings and nav: Duck Green */
+
+  --space-s: .5em;
+  --space-m: 1em;
+  --space-l: 3em;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background-color: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;   /* the header drawing overhangs the column */
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 88ch;
+  padding: 1rem;
+  line-height: 1.5;
+  font-family: 'Martel', Georgia, serif;
+}
+
+/* Vertical rhythm: every element that follows a sibling gets a gap. */
+main > * + *,
+section > * + *,
+.bio > * + * { margin-top: var(--space-m); }
+
+p { margin: 0; max-width: 80ch; }
+p + p { margin-top: var(--space-m); }
+
+/* ------------------------------------------------------------------
+   Headings
+   ------------------------------------------------------------------ */
+h1 {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--heading);
+}
+h2 {
+  margin: 1rem 0;
+  font-family: 'Cormorant Garamond', Garamond, serif;
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+/* ------------------------------------------------------------------
+   Links: same colour as the text, marked only by a fine underline
+   that darkens on hover
+   ------------------------------------------------------------------ */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(71, 77, 74, .35);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 300ms;
+}
+a:hover, a:focus-visible { text-decoration-color: currentColor; }
+
+/* Nav links carry no underline at all. */
+.nav-links a { text-decoration: none; }
+
+/* ------------------------------------------------------------------
+   Header: nav links over the phase-mixing drawing
+   ------------------------------------------------------------------ */
+header { text-align: center; }
+
+.nav-bar { position: relative; }
+
+.nav-links {
+  position: absolute;
+  top: 6.9rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 2;
+}
+.nav-links a {
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--heading);
+}
+
+/* Like the reference, the drawing runs a little past the text column:
+   it starts just inside the left edge and overhangs on the right. */
+img.spec {
+  display: block;
+  width: 105%;
+  max-width: none;
+  margin-left: 1.5%;
+  height: auto;
+  opacity: .7;
+  z-index: -1;
+}
+
+.hamburger { display: none; }
+
+/* ------------------------------------------------------------------
+   Home page: bio on the left, portrait on the right
+   ------------------------------------------------------------------ */
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.bio {
+  flex: 2;
+  max-width: min(100vw, 60ch);
+  padding-right: 2em;
+}
+.photo {
+  flex: 1;
+  max-width: 25%;
+  min-width: 200px;
+}
+.portrait {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 3pt;
+}
+.contact-deets {
+  display: inline-block;
+  margin-top: 0;
+  font-family: 'Fira Code', ui-monospace, Menlo, Consolas, monospace;
+  font-size: .9em;
+  white-space: nowrap;   /* email and links stay on one line */
+}
+
+/* ------------------------------------------------------------------
+   Lists (papers)
+   ------------------------------------------------------------------ */
+ol, ul { margin: var(--space-m) 0 0; padding-left: 1.5em; }
+ul { list-style: circle; }
+li + li { margin-top: var(--space-s); }
+.papers li + li { margin-top: var(--space-m); }
+.papers .venue { font-style: italic; }
+.papers .links { font-style: normal; }
+/* Inline maths: fonts that carry ℏ, ∈ and → properly. */
+.math { font-family: 'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'DejaVu Serif', serif; }
+
+/* ------------------------------------------------------------------
+   CV: one line per entry, dates in a narrow left column
+   ------------------------------------------------------------------ */
+.cv-row {
+  display: grid;
+  grid-template-columns: 7em 1fr;
+  column-gap: 1em;
+  margin-top: var(--space-s);
+}
+.cv h2 + .cv-row { margin-top: 0; }
+.cv .when { font-variant-numeric: tabular-nums; }
+@media screen and (max-width: 635px) {
+  .cv-row { grid-template-columns: 1fr; }
+  .cv .when { font-size: .9em; }
+}
+
+/* ------------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------------ */
+footer {
+  margin-top: var(--space-l);
+  text-align: center;
+  font-size: .9em;
+}
+
+/* ------------------------------------------------------------------
+   Small screens: fixed translucent bar with a hamburger, no drawing
+   ------------------------------------------------------------------ */
+@media screen and (max-width: 635px) {
+  body { padding-top: 4rem; }
+
+  img.spec { display: none; }
+
+  .nav-bar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 1rem 0 0 1rem;
+    background-color: rgba(245, 242, 232, .75);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-bottom: 1px solid var(--heading);
+    z-index: 1;
+    text-align: left;
+  }
+
+  .hamburger {
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  .hamburger .line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 3px 0 4px;
+    background-color: var(--heading);
+  }
+
+  .nav-links {
+    position: static;
+    transform: none;
+    white-space: normal;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease-in-out;
+  }
+  .nav-links.expanded { max-height: 200px; }
+  .nav-links a {
+    display: block;
+    padding: 0;
+    margin-bottom: .5rem;
+    font-size: 1.1rem;
+  }
+
+  .bio { flex: 1 1 100%; max-width: 100%; padding-right: 0; }
+  .photo { flex: 1 1 100%; max-width: 60%; margin: var(--space-m) auto 0; }
+}
