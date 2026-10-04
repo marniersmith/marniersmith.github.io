@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marniersmith.github.io/sitemap.xml

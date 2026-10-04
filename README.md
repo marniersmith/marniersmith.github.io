@@ -12,6 +12,7 @@ Plain HTML and CSS, no build step. GitHub Pages serves the files exactly as they
 - `phase-mixing.svg`: the header drawing (level sets of a free-transport solution)
 - `portrait.jpg`: the photo on the home page (currently 716 by 895 pixels, used as supplied)
 - `favicon.svg`: browser-tab icon
+- `sitemap.xml` and `robots.txt`: for search engines (list the three pages; update `lastmod` when a page changes)
 
 ## Putting it on GitHub Pages
 
